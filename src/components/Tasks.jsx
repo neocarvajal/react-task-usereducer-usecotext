@@ -98,16 +98,13 @@ const Tasks = () => {
     const Taskform = () => {
 
         return (
-            <taskContext.Provider value={state}>
-                <Taskcount />
-                <form onSubmit={handleSubmit}>
-                    <input type='text' placeholder='Task name' ref={nameForm} />
-                    {/* <input type='text' placeholder='Task description' ref={descriptionForm} /> */}
-                    <button type='submit'>
-                    CREATE TASK
-                    </button>
-                </form>
-            </taskContext.Provider>
+            <form onSubmit={handleSubmit}>
+                <input type='text' placeholder='Task name' ref={nameForm} />
+                {/* <input type='text' placeholder='Task description' ref={descriptionForm} /> */}
+                <button type='submit'>
+                CREATE TASK
+                </button>
+            </form>
         );
     }
 
@@ -133,7 +130,8 @@ const Tasks = () => {
     return (
         <div>
             <h1>Task's</h1>
-            
+            <taskContext.Provider value={state}>
+                <Taskcount />
                 {
                     state.length !== 1 ? 
                     (
@@ -177,6 +175,7 @@ const Tasks = () => {
                 }
                     
                 <Taskform />
+            </taskContext.Provider>
         </div>
     );
 }
