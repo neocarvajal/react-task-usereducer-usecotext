@@ -7,6 +7,7 @@ import React, { useReducer, useContext, useRef } from 'react';
  * 1 - Crear tareas | 2 - Borrar tareas | 3 - Filtrar tareas
  */
 
+
 const Tasks = () => {
 
     const CREATE = 'CREATE';
@@ -44,6 +45,7 @@ const Tasks = () => {
                 console.log('ERASE');
                 return state.filter((_, id) => id !== action.payload.id)
             case FILTER:
+                console.log('FILTER COMPLETED');
                 return state.map((task) => 
                     (task.id === action.payload.id)
                     ?
@@ -68,12 +70,13 @@ const Tasks = () => {
     const Taskcount = () => {
         const state = useContext(taskContext);
 
-        console.log(state);
+        let count = Object.keys(state).length -1;
 
         return (
-            <p>
-                Task's:
-            </p>
+            <pre>
+                Task Count: {count}
+                
+            </pre>
         )
     }
 
@@ -97,6 +100,7 @@ const Tasks = () => {
 
         return (
             <taskContext.Provider value={state}>
+                <Taskcount />
                 <form onSubmit={handleSubmit}>
                     <input type='text' placeholder='Task name' ref={nameForm} />
                     {/* <input type='text' placeholder='Task description' ref={descriptionForm} /> */}
